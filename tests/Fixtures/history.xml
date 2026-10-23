@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValCurs ID="R01235" DateRange1="16.10.2026" DateRange2="17.10.2026">
+    <Record Date="16.10.2026" Id="R01235">
+        <Nominal>1</Nominal>
+        <Value>80,0000</Value>
+    </Record>
+    <Record Date="17.10.2026" Id="R01235">
+        <Nominal>1</Nominal>
+        <Value>90,0000</Value>
+    </Record>
+</ValCurs>

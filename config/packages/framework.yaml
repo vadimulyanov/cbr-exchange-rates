@@ -1,0 +1,22 @@
+framework:
+  secret: '%env(APP_SECRET)%'
+  http_method_override: false
+  handle_all_throwables: true
+  serializer: true
+  validation: { enable_attributes: true }
+  property_info: { enabled: true }
+
+  http_client:
+    scoped_clients:
+      cbr.client:
+        base_uri: '%env(CBR_BASE_URI)%'
+        timeout: 10
+        max_duration: 30
+        max_redirects: 0
+        headers:
+          Accept: application/xml
+          User-Agent: CbrRates/1.0
+
+when@test:
+  framework:
+    test: true

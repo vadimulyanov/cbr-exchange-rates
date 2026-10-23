@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Valuta name="Foreign Currency Market Lib">
+    <Item ID="R01235">
+        <Name>Доллар США</Name>
+        <ParentCode>R01235</ParentCode>
+        <ISO_Num_Code>840</ISO_Num_Code>
+        <ISO_Char_Code>USD</ISO_Char_Code>
+    </Item>
+    <Item ID="R01239">
+        <Name>Евро</Name>
+        <ParentCode>R01239</ParentCode>
+        <ISO_Num_Code>978</ISO_Num_Code>
+        <ISO_Char_Code>EUR</ISO_Char_Code>
+    </Item>
+    <Item ID="R01580">
+        <Name>Саудовский риял</Name>
+        <ParentCode>R01580</ParentCode>
+        <ISO_Num_Code>682</ISO_Num_Code>
+        <ISO_Char_Code>SAR</ISO_Char_Code>
+    </Item>
+    <Item ID="R01580C">
+        <Name>Саудовский риял</Name>
+        <ParentCode>R01580</ParentCode>
+        <ISO_Num_Code>682</ISO_Num_Code>
+        <ISO_Char_Code>SAR</ISO_Char_Code>
+    </Item>
+    <Item ID="R01436">
+        <Name>Литовский талон</Name>
+        <ParentCode>R01435</ParentCode>
+        <ISO_Num_Code/>
+        <ISO_Char_Code/>
+    </Item>
+</Valuta>

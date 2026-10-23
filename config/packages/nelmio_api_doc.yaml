@@ -1,0 +1,10 @@
+nelmio_api_doc:
+  html_config:
+    assets_mode: bundle
+  documentation:
+    info:
+      title: CBR Exchange Rates
+      description: CBR rates and cross rates. Decimal values are returned as strings.
+      version: 1.0.0
+  areas:
+    path_patterns: [ '^/api/v1/' ]

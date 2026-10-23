@@ -1,0 +1,44 @@
+framework:
+  messenger:
+    failure_transport: failed
+
+    serializer:
+      default_serializer: messenger.transport.symfony_serializer
+      symfony_serializer:
+        format: json
+
+    transports:
+      planning:
+        dsn: '%env(MESSENGER_TRANSPORT_DSN)%'
+        options:
+          exchange: { name: cbr.planning }
+          queues: { cbr.planning: ~ }
+          confirm_timeout: 5
+        retry_strategy: { max_retries: 3, delay: 60000, multiplier: 2, max_delay: 300000, jitter: 0.2 }
+
+      imports:
+        dsn: '%env(MESSENGER_TRANSPORT_DSN)%'
+        options:
+          exchange: { name: cbr.imports }
+          queues: { cbr.imports: ~ }
+          confirm_timeout: 5
+        retry_strategy: { max_retries: 3, delay: 60000, multiplier: 2, max_delay: 300000, jitter: 0.2 }
+
+      failed:
+        dsn: '%env(MESSENGER_TRANSPORT_DSN)%'
+        options:
+          exchange: { name: cbr.failed }
+          queues: { cbr.failed: ~ }
+          confirm_timeout: 5
+
+    routing:
+      App\Import\Message\PlanImportMessage: planning
+      App\Import\Message\ImportCurrencyHistoryMessage: imports
+
+when@test:
+  framework:
+    messenger:
+      transports:
+        planning: 'in-memory://'
+        imports: 'in-memory://'
+        failed: 'in-memory://'

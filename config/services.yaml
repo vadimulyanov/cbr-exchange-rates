@@ -1,0 +1,37 @@
+services:
+    _defaults:
+        autowire: true
+        autoconfigure: true
+
+    App\:
+        resource: '../src/'
+        exclude:
+            - '../src/Kernel.php'
+            - '../src/Dto/'
+            - '../src/Cbr/Entity/'
+            - '../src/Cbr/Model/'
+            - '../src/Cbr/Migrations/'
+            - '../src/Exchange/Model/'
+            - '../src/Exchange/Dto/'
+            - '../src/Exchange/Exception/'
+            - '../src/Import/Message/'
+            - '../src/Import/Model/'
+
+    App\Exchange\Contract\RateProviderInterface:
+        alias: App\Cbr\Service\CbrRateProvider
+
+    App\Import\Contract\CurrencyCatalogInterface:
+        alias: App\Cbr\Service\CbrImportCurrencyCatalog
+
+    App\Import\Contract\HistoryImporterInterface:
+        alias: App\Cbr\Service\CbrHistoryImporter
+
+    App\Cbr\Client\CbrClient:
+        arguments:
+            $httpClient: '@cbr.client'
+
+    App\Cbr\Repository\RateRepositoryInterface:
+        alias: App\Cbr\Repository\DoctrineRateRepository
+
+    App\Cbr\Repository\CurrencyRepositoryInterface:
+        alias: App\Cbr\Repository\DoctrineCurrencyRepository

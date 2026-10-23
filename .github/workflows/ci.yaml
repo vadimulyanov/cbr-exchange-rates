@@ -1,0 +1,32 @@
+name: Checks
+
+on:
+    push:
+    pull_request:
+    workflow_dispatch:
+
+permissions:
+    contents: read
+
+jobs:
+    check:
+        runs-on: ubuntu-latest
+        timeout-minutes: 15
+        steps:
+            - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+            - name: Build and start
+              run: docker compose up -d --build --wait --wait-timeout 180
+            - name: Check configuration and tests
+              run: docker compose exec -T app composer check
+            - name: Check import through RabbitMQ
+              run: docker compose exec -T -e RABBITMQ_TEST_DSN=amqp://cbr:cbr@rabbitmq:5672/%2f app composer test:broker
+            - name: Check HTTP and OpenAPI
+              run: |
+                  curl --fail --retry 10 --retry-connrefused --retry-delay 1 http://127.0.0.1:8088/api/doc.json -o /tmp/openapi.json
+                  curl --fail http://127.0.0.1:8088/api/doc -o /dev/null
+            - name: Logs
+              if: failure()
+              run: docker compose logs --no-color --tail=100
+            - name: Stop
+              if: always()
+              run: docker compose down --volumes
