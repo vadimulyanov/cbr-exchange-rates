@@ -59,12 +59,12 @@
         "test": [
             "@php bin/console doctrine:database:create --env=test --if-not-exists --no-interaction",
             "@php bin/console doctrine:migrations:migrate --env=test --no-interaction",
-            "phpunit --exclude-group rabbitmq"
+            "phpunit --exclude-group rabbitmq --log-junit var/reports/tests.xml"
         ],
         "test:broker": [
             "@php bin/console doctrine:database:create --env=test --if-not-exists --no-interaction",
             "@php bin/console doctrine:migrations:migrate --env=test --no-interaction",
-            "phpunit --testsuite broker"
+            "phpunit --testsuite broker --log-junit var/reports/broker.xml"
         ],
         "check": [
             "@composer validate --strict",
